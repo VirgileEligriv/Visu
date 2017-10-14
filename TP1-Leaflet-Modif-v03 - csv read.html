@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+    <meta charset="utf-8">
+    <title>Visualisation des données - TP1</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Visualisation des données - TP1 : D3JS, Leaflet, Google Maps API...">
+    <link rel="shortcut icon" href="http://library.grenoble-em.com/ui/skins/EGEM/ermes-front/images/product.ico">
+
+    <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic' rel='stylesheet' type='text/css'>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/css/bootstrap.min.css" integrity="sha384-AysaV+vQoT3kOAXZkl02PThvDr8HYKPZhNT5h/CXfBThSRXQ6jW5DO2ekP5ViFdi" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="http://www.datavis.fr/assets/css/font-awesome-4.6.1/css/font-awesome.min.css">
+    <link rel="stylesheet" href="http://www.datavis.fr/assets/css/styles.css" />
+  </head>
+  
+  	
+  <body>
+<!-- WARNING : Since both SyntaxHighlighter & Bootstrap use CSS class container -->
+<!-- Every "container" occurence in SyntaxHighlighter has been replaced by "containerSH" -->
+<script type="text/javascript" src="http://www.datavis.fr/assets/lib/syntaxhighlighter/scripts/shCore.js"></script>
+<script type="text/javascript" src="http://www.datavis.fr/assets/lib/syntaxhighlighter/scripts/shBrushJScript.js"></script>
+<script type="text/javascript" src="http://www.datavis.fr/assets/lib/syntaxhighlighter/scripts/shBrushCss.js"></script>
+<link type="text/css" rel="stylesheet" href="http://www.datavis.fr/assets/lib/syntaxhighlighter/styles/shCore.css"/>
+<link type="text/css" rel="stylesheet" href="http://www.datavis.fr/assets/lib/syntaxhighlighter/styles/shThemeEclipse.css"/>
+<script type="text/javascript">
+	SyntaxHighlighter.defaults['toolbar'] = false; // remove question mark
+	SyntaxHighlighter.all();
+</script>﻿<!-- Leaflet -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.2/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.0.2/dist/leaflet.js"></script>
+<script type="text/javascript" src="http://www.datavis.fr/assets/lib/leaflet/leaflet.markercluster.js"></script>
+<link rel="stylesheet" href="./TP1-Leaflet.markercluster.custom.css" />
+<script src="https://d3js.org/d3.v4.min.js"></script>
+
+<style>
+	#cluster {
+		width: 100%;
+		height: 900px;
+		margin-bottom: 50px;
+	}
+	.mycluster {
+		height: 40px;
+		width: 40px;
+		border-radius: 50%;
+		background-color: #3498db;
+		color: white;
+		text-align: center;
+		font-size: 20px;    
+		line-height: 40px;
+		margin-top: -20px;
+		margin-left: -20px;
+	}
+	.cluster {
+		background: #3498db;
+		border-radius: 50%;
+		text-align: center;
+		color: white;
+		font-weight: 700;
+		border: 1px solid #3498db;
+		font-family: monospace;
+	}
+	}
+</style>
+
+<div id="tutorialwrap" class="header">
+	<h1>Villes de France</h1>
+	<h3>Population > 5000 habitants</h3>
+</div>
+<div class="container">
+	<i>18/10/2017</i>	<div id="cluster"></div>
+	
+	<h2>Visualisation</h2>
+	<p>
+		Nous visualisons ici les villes de France de plus de 5000 habitants qui sont situées dans l'hexagone.</br>
+	<ul>
+		<li>Les villes sont regroupées en clusters en fonction du niveau de zoom et de leur proximité déographique.</li>
+		<li>Chaque cluster est représenté par un cercle contenant le nombre de villes qu'il regroupe.</li>
+		<li>Une ville isolée est représentée par un marqueur de position.</li>
+	</ul>
+	</p>
+	
+	<h2>Choix et Intérêts de cette Visualisation</h2>
+	<p>
+		Nous avons choisi cette représentation visuelle et interactive sous forme de clusters pour mettre en évidence les zones géographiques comportant un grand nombre de villes de plus de 5000 habitants.</br>
+	<ul>
+		<li>Les clusters permettent de regrouper géographiquement ces villes, indiquant le nombre de villes dans chaque zone.</li>
+		<li>La taille, la couleur, la transparence du cluster ainsi que la police utilisée pour afficher le nombre de villes varie en fonction du nombre de villes dans ce cluster, ce qui donne une représentation visuelle les concentrations géographiques de ces villes.</li>
+		<li>Les couleurs utilisées ont été choisies pour indiquer une progression de couleurs depuis la feuille bleue matérialisée par le marqueur de position de ville jusqu'au rond rouge matérialisant les plus gros clusters.</li>
+</br>
+		<li>A noter que la visualisation avec le zoom proposé au lancement permet d'observer clairement des axes de répartition des concentrations de ces villes ainsi que les zones où elles sont absentes.</li>
+	</ul>
+	</p>
+
+	<h2>Fonctionnalités</h2>
+	<p>
+		Les fonctionnalités suivantes sont accessibles de façon interactive :
+	</p>
+	<ul>
+		<li>En passant la souris sur un ensemble de villes, la zone délimitant les villes qu'il contient apparaît.</li>
+		<li>A chaque clic sur un ensemble de villes, ce dernier se sépare en sous-ensemble de façon animée.</li>
+		<li>En passant la souris sur une ville, son nom et son nombre d'habitants apparaît.</li>
+	</ul>
+
+	<h2>La librairie utilisée</h2>
+	<p>
+		En plus de l'API Leaflet, ce tutoriel utilise une librairie nommée <a href="https://github.com/Leaflet/Leaflet.markercluster" target="_blank">Marker Clustering plugin for Leaflet</a> 
+		(il faut récupérer les fichiers CSS et JS présent dans le dossier <code>dist</code>).</br>
+	</p>
+	
+	<h2>Source des Données</h2>
+	<p>
+		La source de données utilisée est une requête SPARQL exécutée sur : <a href="http://dbpedia.org/sparql">dbpedia</a></br>
+		Requête SPARQL :</br>
+			PREFIX foaf: <http://xmlns.com/foaf/0.1/></br>
+			PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#></br>
+			PREFIX dbpedia: <http://dbpedia.org/resource/></br>
+			PREFIX dbp-ont: <http://dbpedia.org/ontology/></br>
+			PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#></br>
+			PREFIX yago: <http://dbpedia.org/class/yago/></br>
+</br>
+			select distinct str(?label), ?latitude, ?longitude, str(?population), ?superficie/1e+06</br>
+			{</br>
+			?location <http://dbpedia.org/ontology/country> dbpedia:France .</br>
+			?location foaf:name ?label .</br>
+			?location geo:lat ?latitude .</br>
+			?location geo:long ?longitude .</br>
+			?location dbp-ont:populationTotal ?population .</br>
+			OPTIONAL {?location dbp-ont:area ?superficie} .</br>
+			FILTER (?population > 5000 && ?longitude > -4.5 && ?longitude < 9.5 && ?latitude > 41.5 && ?latitude < 51.1 )</br>
+			} order by ?population limit 10000 offset 1</br>
+	</p>
+	
+</div>
+<script type="text/javascript">
+
+	// Map with standard cluster
+	var map = L.map('cluster').setView([44.7,5.7], 8);
+	
+	var stamenToner = L.tileLayer('http://stamen-tiles-{s}.a.ssl.fastly.net/toner/{z}/{x}/{y}.png', {
+		attribution: 'Map tiles by <a href="https://stamen.com">Stamen Design</a>, <a href="https://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+		subdomains: 'abcd',
+		minZoom: 5,
+		maxZoom: 20,
+		ext: 'png'
+	});
+	
+	map.addLayer(stamenToner);
+	
+	var markersCluster = new L.MarkerClusterGroup();
+	
+
+	// Source of data extracted from dbpedia and read from a csv file
+    // Format : 	['location',latitude,longitude,population,area(km2),density(Hab/km2)]
+	d3.csv("https://raw.githubusercontent.com/VirgileEligriv/Visu/master/TPVisu2.csv", function(cities) {
+	cities.forEach(function(d) {
+	    d.latitude = +d.latitude;
+		d.longitude = +d.longitude;
+		d.population = +d.population;
+		d.area = +d.area;
+		d.density = +d.density;
+		var latLng = new L.LatLng(d.latitude, d.longitude);
+		var marker = new L.Marker(latLng, {title: d.location + " : " + d.population + " habitants"});
+		markersCluster.addLayer(marker);
+		});
+	});
+	
+	
+	map.addLayer(markersCluster);
+	// Map with standard cluster (END)
+	
+</script>
+
+
+
+<footer  class="bg-faded" id="contact">
+    <div class="container">
+		<div class="row centered">
+			<h2 class="m-t-0 text-primary">MERCI DE VOTRE VISITE</h2>
+			<hr class="primary">
+		</div>
+        <div class="row centered">
+            <div class="col-lg-6">
+				<h3>Contact</h3>
+				<p>
+					<a href="mailto:mickael.lelimousin@grenoble-em.com">contact : Mickael</a> <br>
+					<a href="mailto:virgile.varin@grenoble-em.com">contact : Virgile</a> <br>
+				</p>
+			</div>
+			<div class="col-lg-6">
+				<h3>Support</h3>
+				<p>Le contenu de ce site est entièrement gratuit et libre de droit.</p>
+			</div>
+			<div class="col-lg-6">
+				<h3>References</h3>
+				<p>Les sources de cette page sont librement inspirées du tutoriel suivant : <a href="http://www.datavis.fr/index.php?page=leaflet-cluster">DataVis</a> <br>
+				</p>
+			</div>
+
+        </div>
+    </div>
+</footer>	
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-73302929-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+    <!--scripts loaded here-->
+    
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+	
+	<!-- Bootstrap Tooltip require tether.js -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/tether/1.2.0/js/tether.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/js/bootstrap.min.js" integrity="sha384-BLiI7JTZm+JWlgKa0M0kGRpJbF2J8q+qreVrKBC47e3K6BW78kGLrCkeRX6I9RoK" crossorigin="anonymous"></script>
+	
+    <!-- <script src="js/scripts.js"></script> -->
+  </body>
+
+</html>
+
