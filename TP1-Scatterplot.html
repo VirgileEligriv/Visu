@@ -170,11 +170,9 @@ d3.csv("https://raw.githubusercontent.com/VirgileEligriv/Visu/master/TP1-Data.cs
       .orient("left")
       .tickSize(-width);
 
-//  var color = d3.scale.category20();
-  
-	var color = d3.scale.ordinal()
-	  .domain(["20000<d<30000", "10000<d<20000", "5000<d<10000", "1000<d<5000", "0<d<1000"])
-	  .range(["#aa3863", "#ff9441", "#e6ac5a", "#449775", "#3b7d86"]);
+  var color = d3.scale.ordinal()
+    .domain(["20000<d<30000", "10000<d<20000", "5000<d<10000", "1000<d<5000", "0<d<1000"])
+    .range(["#aa3863", "#ff9441", "#e6ac5a", "#449775", "#3b7d86"]);
 	  
 	  
   var tip = d3.tip()
