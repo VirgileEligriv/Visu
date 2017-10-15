@@ -1,0 +1,304 @@
+html,
+body {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+	/* Explanation : https://github.com/twbs/bootstrap/pull/19098 */
+	font-family:
+	/* 1 */ -apple-system, BlinkMacSystemFont,
+	/* 2 */ "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
+	/* 3 */ "Helvetica Neue", sans-serif;
+    /* font-family: "Lato",Arial,sans-serif; */
+    font-weight: 300;
+    webkit-tap-highlight-color: #222;
+    top:0;
+}
+
+h1, .h1, h2, .h2, h3, .h3 {
+    margin-bottom: 10px;
+    margin-top: 20px;
+}
+/* tutorialwrap is the DIV used in each tutorial for the title and subtitle*/
+#tutorialwrap {
+    background: #f7f7f9 none repeat scroll 0 0;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 40px;
+    margin-top: 0;
+    padding-top: 40px;
+    text-align: center;
+}
+
+#tutorialwrap h1 {
+    font-size: 3em;
+    font-weight: 300;
+}
+
+#tutorialwrap h3 {
+    color: grey;
+    font-weight: 300;
+}
+
+
+header {
+	/* background: rgba(0, 0, 0, 0) url("../img/header_bg.jpg") no-repeat scroll center center / cover; */
+	background-color: #000;
+    background-image: url("../img/background-tile.png");
+    background-position: center top;
+    background-repeat: repeat-x;
+    background-size: contain;
+    min-height: 100%;
+    text-align: center;
+    width: 100%;
+}
+
+header .header-content {
+    position: relative;
+    width: 100%;
+    padding: 100px 15px;
+    text-align: center;
+    z-index: 2;
+}
+
+header .header-content .inner h1 {
+	color: #ffffff;
+    font-size: 70px;
+	text-transform: uppercase;
+    letter-spacing: 8px;
+    padding-bottom: 30px;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+header .header-content .inner p {
+	color: #1f8dd6;
+    margin-bottom: 50px;
+    font-size: 30px;
+    font-weight: 400;
+    letter-spacing: 3px;
+    margin-left: 15px;
+}
+
+
+.navigation {
+  float: right;
+}
+
+.navigation a:not(.self) {
+  color: inherit;
+}
+
+.column {
+  max-width: 960px;
+  position: relative;
+  display: block;
+  margin: 0 auto;
+  padding: 0 10px;
+}
+
+
+.avatar {
+  position: absolute;
+  top: 0;
+  right: 100%;
+  border-radius: 4px;
+}
+
+.gist-readme {
+  line-height: 1.5em;
+  max-width: 720px;
+  max-height: 1000000vh;
+}
+
+blockquote {
+  max-width: 640px;
+}
+
+li {
+  max-width: 680px;
+}
+
+a:link {
+  color: #3182bd;
+  fill: #3182bd;
+}
+
+a:visited {
+  color: #756bb1;
+  fill: #756bb1;
+}
+
+a.self {
+  color: #000;
+}
+
+a.anchor {
+  color: #ccc;
+  left: -40px;
+  padding: 0 10px;
+  margin: 0 10px;
+  position: absolute;
+  font-weight: normal;
+}
+
+a:not(:hover) {
+  text-decoration: none;
+}
+
+.gist-id,
+pre,
+code,
+textarea {
+  font-family: "Menlo", monospace;
+  line-height: normal;
+}
+
+.gist-id {
+  line-height: 0;
+}
+
+textarea {
+  font-size: 100%;
+}
+
+pre {
+  border-left: solid 2px #ccc;
+  padding-left: 18px;
+  margin: 2em 0 2em -20px;
+  max-width: 960px;
+  overflow-x: auto;
+}
+
+.html .value,
+.javascript .string,
+.javascript .regexp {
+  color: #756bb1;
+}
+
+.html .tag,
+.css .tag,
+.javascript .keyword {
+  color: #3182bd;
+}
+
+aside,
+.comment {
+  color: #636363;
+}
+
+.html .doctype,
+.javascript .number {
+  color: #31a354;
+}
+
+.html .attribute,
+.css .attribute,
+.javascript .class,
+.javascript .special {
+  color: #e6550d;
+}
+
+.gists {
+  max-width: 970px;
+}
+
+.gists .gist {
+  background-position: 50% 0%;
+  border: solid 1px #eee;
+  border-bottom: solid 1px #ccc;
+  -webkit-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -o-box-sizing: border-box;
+  box-sizing: border-box;
+  display: inline-block;
+  float: left;
+  line-height: normal;
+  margin: 0 10px 10px 0;
+  position: relative;
+  text-shadow: 1px 1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, -1px -1px 0 #fff;
+  -webkit-transition: ease 750ms background-position;
+  -moz-transition: ease 750ms background-position;
+  -ms-transition: ease 750ms background-position;
+  -o-transition: ease 750ms background-position;
+  transition: ease 750ms background-position;
+  width: 232px;
+  padding: 8px 10px;
+}
+
+.gists .gist--thumbnail {
+  height: 82px;
+  color: #000;
+}
+
+.gists .gist:hover,
+.gists .gist:focus {
+  background-color: #eee;
+  background-position: 50% 100%;
+  text-decoration: none;
+}
+
+.gists .gist-description {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-height: 55px;
+}
+
+.gists .gist-author {
+  color: #777;
+  font-weight: 300;
+}
+
+.gists .gist:hover .gist-underline {
+  text-decoration: underline;
+}
+
+.loading {
+  clear: both;
+  color: #aaa;
+}
+
+.index-pop {
+  position: absolute;
+  right: 10px;
+  margin-top: 1em;
+  line-height: 1.5em;
+}
+
+.index-pop svg {
+  text-decoration: none !important;
+  margin-left: 0.3em;
+  position: relative;
+  top: 3px;
+}
+
+.gist-secret {
+  display: inline-block;
+  padding: 4px 5px;
+  font-size: 11px;
+  font-weight: 300;
+  line-height: 10px;
+  color: #a1882b;
+  text-transform: uppercase;
+  vertical-align: middle;
+  background-color: #ffefc6;
+  border-radius: 3px;
+  margin-top: -4px;
+}
+
+.date {
+  font-size: 11px;
+}
+
+@media only screen and (max-width: 860px) {
+  .index-pop {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 1060px) {
+  .avatar {
+    display: none;
+  }
+}
