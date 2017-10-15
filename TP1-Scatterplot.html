@@ -38,8 +38,8 @@
 		<ul>
 			<li>Les villes sont représentées sous forme de disques dont :</li>
 			<ul>
-				<li>La taille varie proportionnellement à la densité de la ville.</li>
-				<li>La couleur varie en fonction de la classe de densité à laquelle la ville appartient (voir légende du graphe).</li>
+				<li>La taille varie proportionnellement à la densité de population de la ville.</li>
+				<li>La couleur varie en fonction de la classe de densité de population à laquelle la ville appartient (voir légende du graphe).</li>
 			</ul>
 			
 		</ul>
@@ -47,14 +47,15 @@
 
 		<h2>Choix et Intérêts de cette Visualisation</h2>
 		<p>
-			Nous avons choisi cette représentation visuelle et interactive sous forme de scatterplot pour mettre en évidence de façon visuelle les classes de densité et la répartition de chaque ville.</br>
+			Nous avons choisi cette représentation visuelle et interactive sous forme de scatterplot pour mettre en évidence de façon visuelle les classes de densité de population et la répartition des villes dans ces classes.</br>
 		<ul>
-			<li>Nous avons choisi 5 classes de densité avec des bornes permettant d'obtenir un bon comprimis entre équilibre des ensemble de villes et pertinence/facilité de lecture des classes.</li>
+			<li>Nous avons choisi 5 classes de densité de population avec des bornes permettant d'obtenir un bon compromis entre équilibre des ensembles de villes et pertinence/facilité de lecture des classes.</li>
+			<li>Nous avons choisi une échelle de couleurs progressive allant du bleu pour les plus faibles densités de population jusqu'au bordeau pour les plus fortes.</li>
+			</br>
 			<li>Cette visualisation permet :</li>
 			<ul>
-				<li>De mettre en évidence clairement les villes qui ont une densité de population comparable, quelles que soient leurs surfaces et leurs populations totales.</li>
-				<li>De mettre en évidence les villes qui sont peu denses car elles occupent un grand territoire.</li>
-				<li>De mettre en évidence les villes qui sont très denses car elles occupent un petit territoire.</li>
+				<li>De mettre en évidence clairement les ensembles de villes qui ont une densité de population comparable grâce aux couleurs des classes.</li>
+				<li>De visualiser rapidement les plus grandes villes pour chaque classe de densité de population.</li>
 				<li>De visualiser à tout moment de façon interactive les informations pertinentes sur les villes pointées.</li>
 			</ul>
 		</ul>
@@ -169,8 +170,13 @@ d3.csv("https://raw.githubusercontent.com/VirgileEligriv/Visu/master/TP1-Data.cs
       .orient("left")
       .tickSize(-width);
 
-  var color = d3.scale.category20();
-
+//  var color = d3.scale.category20();
+  
+	var color = d3.scale.ordinal()
+	  .domain(["20000<d<30000", "10000<d<20000", "5000<d<10000", "1000<d<5000", "0<d<1000"])
+	  .range(["#aa3863", "#ff9441", "#e6ac5a", "#449775", "#3b7d86"]);
+	  
+	  
   var tip = d3.tip()
       .attr("class", "d3-tip")
       .offset([-10, 0])
