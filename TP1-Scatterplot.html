@@ -81,9 +81,23 @@
 			<li>En passant la souris au dessus d'un disque, permet de visualiser le nom de la ville et ses données associées.</li>
 		</ul>
 
-		<h2>Source des Données</h2>
-		<p>
-			La source de données utilisée est une requête SPARQL exécutée sur : <a href="http://dbpedia.org/sparql">dbpedia</a></br>
+	<h2>Les Données</h2>
+	<p>
+	<ul>
+		<li>Les données utilisées sont lues sous forme de fichier csv stocké ici : <a href="https://github.com/VirgileEligriv/Visu/blob/master/TP1-Data.csv">TP1-Data.csv</a></li>
+		<li>La structure des données est la suivante :</li>
+		<ul>
+			<li>location : nom de la ville (nominative).</li>
+			<li>latitude : coordonnée géographique (quantitative).</li>
+			<li>longitude : coordonnée géographique (quantitative).</li>
+			<li>population : nombre d'habitants (quantitative).</li>
+			<li>area : superficie en km2 (quantitative).</li>
+			<li>density : densité de population en nombre d'habitants par km2 (quantitative).</li>
+			<li>densityClass : classe de densité de population (quantitative ordinale).</li>
+		</ul>
+	</br>
+		<li>La source de données utilisée est une requête SPARQL exécutée sur : <a href="http://dbpedia.org/sparql">dbpedia</a></li>
+	</ul>
 			Requête SPARQL :</br>
 				PREFIX foaf: <http://xmlns.com/foaf/0.1/></br>
 				PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#></br>
